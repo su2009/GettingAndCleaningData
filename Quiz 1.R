@@ -2,29 +2,33 @@ getwd()
 setwd("d:/Users/yangsu/Desktop")
 getwd()
 
-## Question 1
+certain markdown examplges: http://rmarkdown.rstudio.com/
+
+** Question 1 **
 
 h1url<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv "
 help(download.file)
 download.file(h1url,destfile="comdata.csv")
-comdata<-read.table("comdata.csv",header=TRUE,sep=",")   // sep="," is important#
+comdata<-read.table("comdata.csv",header=TRUE,sep=",")   # sep="," is important#
 
 head(comdata)
 names(comdata) 
-nrow(comdata) //doesn't include the header line when counting the row number
+nrow(comdata)  #doesn't include the header line when counting the row number
 ncol(comdata)  
 
 typeof(comdata$VAL)
 newdata<-subset(comdata, comdata$VAL>23)
 nrow(newdata)
 
-// antoher code without subset, better one
+# antoher code without subset, better one
 length(comdata$VAL[!is.na(comdata$VAL) & comdata$VAL==24])
 
-// check certain colname number #
+# check certain colname number #
 which(colnames(comdata)=="VAL")
 
+
 **Question 2**
+
 comdata$FES
 max(comdata$FES,na.rm = TRUE)
 which(colnames(comdata)=="FES" )
@@ -35,6 +39,7 @@ table(comdata$FES)
 
 
 **Question 3**
+
 h3url<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx"
 # need to add mode="wb", otherwise the file will corrupted
 download.file(h3url,destfile="gasdata.xlsx",mode="wb")
@@ -45,6 +50,7 @@ sum(gasdata$Zip*gasdata$Ext,na.rm=T)
 
 
 **Question4**
+
 library(XML)
 fileurl<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml"
 doc<-xmlTreeParse(fileurl,useInternal=TRUE)
@@ -60,11 +66,13 @@ length(zipcode[zipcode=="21231"])
 
 **Question 5**
 
+
 h5url<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
 download.file(h5url,"acdata.csv")
 library(data.table)
 DT<-fread("acdata.csv",sep="auto")
 
+# method 1
 ptm <- proc.time()
 mean(DT[DT$SEX==1,]$pwgtp15); mean(DT[DT$SEX==2,]$pwgtp15)
 proc.time()-ptm
@@ -99,7 +107,7 @@ proc.time()-ptm
 system.time(DT[DT$SEX==1,]$pwgtp15); mean(DT[DT$SEX==2,]$pwgtp15)
 system.time(tapply(DT$pwgtp15,DT$SEX,mean))
 
-# method 3
+# method 3 - most recommended
 check <- function(y, t) {
   message(sprintf("Elapsed time: %.10f", t[3]))
   print(y)

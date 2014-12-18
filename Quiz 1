@@ -2,7 +2,7 @@ getwd()
 setwd("d:/Users/yangsu/Desktop")
 getwd()
 
-# W1HW1 - right
+**Question 1**
 
 h1url<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv "
 help(download.file)
@@ -26,7 +26,7 @@ length(comdata$VAL[!is.na(comdata$VAL) & comdata$VAL==24])
 # check certain colname number #
 which(colnames(comdata)=="VAL")
 
-# W1HW2
+**Question 2**
 comdata$FES
 max(comdata$FES,na.rm = TRUE)
 which(colnames(comdata)=="FES" )
@@ -36,7 +36,7 @@ table(comdata$FES)
 # reference about tidy data: http://vita.had.co.nz/papers/tidy-data.pdf
 
 
-# W1HW3
+**Question 3**
 h3url<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx"
 # need to add mode="wb", otherwise the file will corrupted
 download.file(h3url,destfile="gasdata.xlsx",mode="wb")
@@ -46,7 +46,7 @@ gasdata
 sum(gasdata$Zip*gasdata$Ext,na.rm=T)
 
 
-# W1HW4 - not solved yet
+**Question4**
 library(XML)
 fileurl<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml"
 doc<-xmlTreeParse(fileurl,useInternal=TRUE)
@@ -60,7 +60,7 @@ length(zipcode[zipcode=="21231"])
 # or table(zipcode)
 
 
-# W1HW5 - right
+**Question 5**
 
 h5url<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
 download.file(h5url,"acdata.csv")

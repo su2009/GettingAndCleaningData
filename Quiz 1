@@ -7,23 +7,21 @@ getwd()
 h1url<-"http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv "
 help(download.file)
 download.file(h1url,destfile="comdata.csv")
-comdata<-read.table("comdata.csv",header=TRUE,sep=",") 
-#sep="," is important#
+comdata<-read.table("comdata.csv",header=TRUE,sep=",")   // sep="," is important#
 
 head(comdata)
-names(comdata)
-# doesn't include the header line # 
-nrow(comdata) 
+names(comdata) 
+nrow(comdata) //doesn't include the header line when counting the row number
 ncol(comdata)  
 
 typeof(comdata$VAL)
 newdata<-subset(comdata, comdata$VAL>23)
 nrow(newdata)
 
-#antoher code without subset
+// antoher code without subset, better one
 length(comdata$VAL[!is.na(comdata$VAL) & comdata$VAL==24])
 
-# check certain colname number #
+// check certain colname number #
 which(colnames(comdata)=="VAL")
 
 **Question 2**
